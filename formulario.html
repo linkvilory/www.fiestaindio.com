@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+
+	<!-- Meta -->
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Css -->
+	<link type="text/css" rel="stylesheet" href="css/font-awesome.css"/>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+	<link type="text/css" rel="stylesheet" href="css/main.css"/>
+	
+	<!-- Icons -->
+
+	<!-- Title Web Site -->
+	<title>Una fiesta en un millón</title>
+	</head>
+	<body>
+
+	<!-- Boostrap Template -->
+	<section id="body" class="body">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<img class="logo" src="img/logo.png" alt="Logo Indio"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<img src="img/titleForm.png" class="header" alt="titleForm"/>
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-8 col-md-offset-2">
+					<p class="text">Ingresa tus datos y sé parte del evento más exclusivo en la historia de pilsner.</p>
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-md-8 col-md-offset-2">
+					<form id="formulario" action="validation.php" method="POST">
+						<div class="col-md-6">
+							<input id="nombre" class="inpForm" type="text" name="nombre" value="" placeholder="Nombre(s)"/>
+							<input id="email" class="inpForm" type="email" name="email" value="" placeholder="E-mail"/>
+						</div>
+						<div class="col-md-6">	
+							<input id="apellidos" class="inpForm" type="text" name="apellidos" value="" placeholder="Apellidos"/>
+							<input id="telefono" class="inpForm" type="number" name="telefono" value="" placeholder="Teléfono"/>
+						</div>
+						
+						<div class="clearfix"></div>
+
+						<div id="checkbox" class="checkbox"><i class="fa fa-check"></i></div><span class="avisoChk">He leído y acepto el <a href="http://www.cuamoc.com/es/content/aviso-de-privacidad" target="_blank">aviso de privacidad</a>.</span>
+
+						<div class="clearfix"></div>
+
+						<img class="aceptarButton" src="img/aceptar.png" alt="Aceptar"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div clasS="col-md-12">
+					<img class="footerImg" src="img/footer.png" alt="Footer"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<span class="copyright">Cuauhtemoc Moctezuma 2015. Todos los derechos reservados.</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">		
+					<span class="aviso">
+						<a class="ref" href="http://www.cuamoc.com/es/content/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>
+					</span>
+					<span class="terminos">
+						<a class="ref" href="http://www.cuamoc.com/es/content/terminos-y-condiciones-de-uso-del-sitio-web-de-cuauhtemoc-moctezuma" target="_blank">Terminos y condiciones</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript Init -->
+	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var boolNombre = 0;
+			var boolApellidos = 0;
+			var boolTelefono = 0;
+			var boolEmail = 0;
+
+
+			function nombreFunction(){
+				var nombreVal = $("#nombre").val();
+				if(nombreVal.length > 5){
+					boolNombre = 1;
+					$("#nombre").removeClass("wrong");
+					$("#nombre").addClass("valid");
+					return;
+				}
+				$("#nombre").addClass("wrong");
+				return;
+			}
+
+			function apellidosFunction(){
+				var apellidosVal = $("#apellidos").val();
+				if(apellidosVal.length > 5){
+					boolApellidos = 1;
+					$("#apellidos").removeClass("wrong");
+					$("#apellidos").addClass("valid");
+				}
+				$("#apellidos").addClass("wrong");
+				return;
+			}
+
+			function telefonoFunction(){
+				var telefonoVal = $("#telefono").val();
+				var numberPattern = /\d+/g;
+				telefonoVal.match( numberPattern );
+				$("#telefono").val(telefonoVal);
+				if(telefonoVal.length >= 8 && telefonoVal.length < 14){
+					boolTelefono = 1;
+					$("#telefono").removeClass("wrong");
+					$("#telefono").addClass("valid");
+				}
+				$("#telefono").addClass("wrong");
+				return;
+			}
+
+			function emailFunction(){
+				var emailVal = $("#email").val();
+				filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				if (filter.test(emailVal)) {
+					boolEmail = 1;
+					$("#email").removeClass("wrong");
+					$("#email").addClass("valid");
+				}
+				$("#email").addClass("wrong");
+				return;
+			}
+
+			$("#checkbox").click(function(){
+				$(this).toggleClass("checked");
+				$("#checkbox").removeClass("sinAceptar");
+			});
+
+			$("#nombre").bind("change paste keyup", function() {
+				console.log("Se va a verificar el campo de Nombre");
+				nombreFunction();
+			});
+			$("#apellidos").bind("change paste keyup", function() {
+				console.log("Se va a verificar el campo de Apellidos");
+				apellidosFunction();
+			});
+			$("#telefono").bind("change paste keyup", function() {
+				console.log("Se va a verificar el campo de Telefono");
+				telefonoFunction();
+			});
+			$("#email").bind("change paste keyup", function() {
+				console.log("Se va a verificar el campo de Email");
+				emailFunction();
+			});
+
+
+			$(".aceptarButton").click(function(e){
+				e.preventDefault();
+
+				var nombre = $("#nombre").val();
+				var email = $("#email").val();
+				var apellidos = $("#apellidos").val();
+				var telefono = $("#telefono").val();
+
+				if(checkAviso()){
+					$.ajax({
+						method: "POST",
+						url: "validation.php",
+						data: { nombre: nombre, email: email, apellidos: apellidos, telefono: telefono }
+					})
+					.done(function( msg ) {
+						console.log("Verificando la información" + msg);
+						if(msg == 1){
+							window.location = "invitacion.php";
+						}
+					});
+
+				}else{$("#checkbox").addClass("sinAceptar");}
+			});
+		});
+		function checkAviso(){
+
+			if($("#checkbox").hasClass("checked")){
+				console.log("Ha aceptado");
+				return true;
+			}
+			console.log("No ha aceptado");
+			return false;
+		}
+	</script>
+	</body>
+</html>

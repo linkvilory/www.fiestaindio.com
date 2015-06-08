@@ -41,7 +41,9 @@ if(isset($_SESSION["codigoSrc"])){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<img class="logo" src="img/logo.png" alt="Logo Indio"/>
+					<a href="/" target="_self">
+						<img class="logo" src="img/logo.png" alt="Logo Indio"/>
+					</a>
 				</div>
 			</div>
 			<div class="row">	

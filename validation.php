@@ -39,6 +39,7 @@ if ($found) {
 	$resultadoValidation = mysql_query($queryValidation);
 	if(mysql_num_rows($resultadoValidation) == 1){
 		// El usuario ya se habia registrado anteriormente
+		echo 2;
 		exit(0);
 	}
 

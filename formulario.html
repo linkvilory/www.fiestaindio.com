@@ -25,7 +25,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<img class="logo" src="img/logo.png" alt="Logo Indio"/>
+					<a href="/" target="_self">
+						<img class="logo" src="img/logo.png" alt="Logo Indio"/>
+					</a>
 				</div>
 			</div>
 			<div class="row">
@@ -94,6 +96,11 @@
 		</div>
 	</footer>
 
+<div id="loading" class="loading hidden">
+	<i class="fa fa-circle-o-notch fa-spin"></i>
+	<p id="alert" class="alertWarning text"></p>
+</div>
+
 	<!-- Javascript Init -->
 	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -113,6 +120,7 @@
 					$("#nombre").addClass("valid");
 					return;
 				}
+				$("#nombre").removeClass("valid");
 				$("#nombre").addClass("wrong");
 				return;
 			}
@@ -123,7 +131,9 @@
 					boolApellidos = 1;
 					$("#apellidos").removeClass("wrong");
 					$("#apellidos").addClass("valid");
+					return;
 				}
+				$("#apellidos").removeClass("valid");
 				$("#apellidos").addClass("wrong");
 				return;
 			}
@@ -137,7 +147,9 @@
 					boolTelefono = 1;
 					$("#telefono").removeClass("wrong");
 					$("#telefono").addClass("valid");
+					return;
 				}
+				$("#telefono").removeClass("valid");
 				$("#telefono").addClass("wrong");
 				return;
 			}
@@ -149,7 +161,9 @@
 					boolEmail = 1;
 					$("#email").removeClass("wrong");
 					$("#email").addClass("valid");
+					return;
 				}
+				$("#email").removeClass("valid");
 				$("#email").addClass("wrong");
 				return;
 			}
@@ -176,16 +190,20 @@
 				emailFunction();
 			});
 
-
 			$(".aceptarButton").click(function(e){
 				e.preventDefault();
-
+				$("#alert").html("");
+				$("#loading").removeClass("hidden");
 				var nombre = $("#nombre").val();
+				nombreFunction();
 				var email = $("#email").val();
+				emailFunction();
 				var apellidos = $("#apellidos").val();
+				apellidosFunction();
 				var telefono = $("#telefono").val();
+				telefonoFunction();
 
-				if(checkAviso()){
+				if(checkAviso() && boolNombre == 1 && boolApellidos == 1 && boolTelefono == 1 && boolEmail == 1){
 					$.ajax({
 						method: "POST",
 						url: "validation.php",
@@ -195,12 +213,30 @@
 						console.log("Verificando la información" + msg);
 						if(msg == 1){
 							window.location = "invitacion.php";
+						}else if(msg == 2){
+							console.log("El usuario ya se había registrado.");
+							$("#alert").html("El usuario ya ha sido registrado.");
+							setTimeout(function(){
+								$("#loading").addClass("hidden");
+							}, 2000);
+						}else{
+							console.log("Hubo un error al validar sus datos en la base de datos");
+							$("#alert").html("Hubo un error al ingresar sus datos, verifiquelos.");
+							setTimeout(function(){
+								$("#loading").addClass("hidden");
+							}, 2000);
 						}
 					});
-
-				}else{$("#checkbox").addClass("sinAceptar");}
+					
+				}else{
+					$("#alert").html("Algunos datos están incompletos, verifiquelos.");
+					setTimeout(function(){
+						$("#loading").addClass("hidden");
+					}, 2000);
+				}
 			});
 		});
+
 		function checkAviso(){
 
 			if($("#checkbox").hasClass("checked")){
@@ -208,6 +244,7 @@
 				return true;
 			}
 			console.log("No ha aceptado");
+			$("#checkbox").addClass("sinAceptar");
 			return false;
 		}
 	</script>

@@ -31,7 +31,7 @@ if(isset($_SESSION["codigoSrc"])){
 	<!-- Icons -->
 
 	<!-- Title Web Site -->
-	<title>Una fiesta en un millón</title>
+	<title>Fiesta una en un mill&oacute;n</title>
 	</head>
 	<body>
 
@@ -86,24 +86,28 @@ Cuernavaca, Morélos, Mor.
 	</section>
 	
 	<footer>
+		<img src="img/tornillo.png" width="20" height="20" class="leftT"/>
+		<img src="img/tornillo.png" width="20" height="20" class="leftB"/>
+		<img src="img/tornillo.png" width="20" height="20" class="rightT"/>
+		<img src="img/tornillo.png" width="20" height="20" class="rightB"/>
 		<div class="container">
 			<div class="row">
-				<div clasS="col-md-12">
-					<img class="footerImg" src="img/footer.png" alt="Footer"/>
+				<div clas="col-md-12">
+					<img class="footerImg" src="img/ingredientes.png" alt="Footer"/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<span class="copyright">Cuauhtemoc Moctezuma 2015. Todos los derechos reservados.</span>
+					<span class="copyright">Cuauht&eacute;moc Moctezuma 2015. Todos los derechos reservados.</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">		
 					<span class="aviso">
-						<a class="ref" href="http://www.cuamoc.com/es/content/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>
+						<a class="ref" href="http://www.cuamoc.com/es/content/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>&nbsp;l
 					</span>
 					<span class="terminos">
-						<a class="ref" href="http://www.cuamoc.com/es/content/terminos-y-condiciones-de-uso-del-sitio-web-de-cuauhtemoc-moctezuma" target="_blank">Terminos y condiciones</a>
+						<a class="ref" href="http://www.cuamoc.com/es/content/terminos-y-condiciones-de-uso-del-sitio-web-de-cuauhtemoc-moctezuma" target="_blank">T&eacute;rminos y condiciones</a>
 					</span>
 				</div>
 			</div>
